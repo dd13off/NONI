@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NONI - Profile</title>
+<!-- Police Pixel -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<!-- Icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body, html {
+height: 100%;
+width: 100%;
+overflow: hidden;
+font-family: 'Arial', sans-serif;
+background-color: #000;
+}
+
+/* --- ARRIÈRE-PLAN IMAGE (Tokyo Ghoul) --- */
+.image-background {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url('https://i.redd.it/k3z4g2l4u6q81.jpg'); /* Image directe de Reddit (si l'URL ne marche pas, je te donnerai une alternative) */
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: -2;
+}
+
+/* Calque sombre pour rendre le texte lisible sur l'image */
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.6); /* Assombrit l'image */
+z-index: -1;
+}
+
+/* Conteneur principal */
+.content-container {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+flex-direction: column;
+color: white;
+text-align: center;
+z-index: 2;
+}
+
+h1 {
+font-family: 'Press Start 2P', cursive;
+font-size: 4rem;
+color: #ff0000;
+text-shadow: 4px 4px 0px #000, 0 0 20px rgba(255, 0, 0, 0.7);
+margin-bottom: 30px;
+line-height: 1.5;
+animation: pulse 2s infinite ease-in-out;
+}
+
+h5 {
+font-family: 'Press Start 2P', cursive;
+font-size: 1.2rem;
+text-shadow: 2px 2px 0px #000;
+margin-bottom: 40px;
+}
+
+/* --- EFFET NEIGE ROUGE & BLANCHE --- */
+#snow-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none; /* Ne pas gêner les clics */
+z-index: 0;
+}
+
+/* Styles des icônes */
+.social-links {
+display: flex;
+gap: 25px;
+justify-content: center;
+align-items: center;
+margin-top: 10px;
+}
+
+.social-link {
+text-decoration: none;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 60px;
+height: 60px;
+border: 3px solid white;
+border-radius: 12px;
+transition: all 0.3s ease;
+background: rgba(0, 0, 0, 0.6);
+box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.social-link i {
+font-size: 2rem;
+color: white;
+transition: all 0.3s ease;
+}
+
+.social-link:hover {
+transform: translateY(-5px) scale(1.1);
+box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+background: rgba(255, 255, 255, 0.1);
+border-color: #ff0000;
+}
+
+.social-link.steam:hover i { color: #1b2838; text-shadow: 0 0 15px #1b2838; }
+.social-link.discord:hover i { color: #7289da; text-shadow: 0 0 15px #7289da; }
+.social-link.instagram:hover i { color: #e1306c; text-shadow: 0 0 15px #e1306c; }
+
+/* Bouton Musique */
+.music-btn {
+position: absolute;
+top: 20px;
+right: 20px;
+background: rgba(0, 0, 0, 0.5);
+color: white;
+border: 2px solid white;
+padding: 10px 20px;
+font-family: 'Press Start 2P', cursive;
+font-size: 1rem;
+cursor: pointer;
+border-radius: 8px;
+transition: all 0.3s ease;
+backdrop-filter: blur(3px);
+z-index: 10;
+box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.music-btn:hover {
+background: rgba(255, 0, 0, 0.6);
+transform: scale(1.1);
+box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+}
+
+@keyframes pulse {
+0% { transform: scale(1); text-shadow: 4px 4px 0px #000, 0 0 10px rgba(255, 0, 0, 0.5); }
+50% { transform: scale(1.05); text-shadow: 4px 4px 0px #000, 0 0 25px rgba(255, 0, 0, 0.9); }
+100% { transform: scale(1); text-shadow: 4px 4px 0px #000, 0 0 10px rgba(255, 0, 0, 0.5); }
+}
+</style>
+</head>
+<body>
+
+  <!-- Image de fond -->
+  <div class="image-background"></div>
+  <div class="overlay"></div>
+
+  <!-- Conteneur pour l'effet de neige -->
+  <div id="snow-container"></div>
+
+  <!-- Bouton Musique -->
+  <button class="music-btn" id="musicBtn">🎵 Musique: OFF</button>
+
+  <!-- Contenu Central -->
+  <div class="content-container">
+    <h1>NONI</h1>
+    <h5>Born in love, died in hate</h5>
+
+    <!-- Logos -->
+    <div class="social-links">
+      <a href="https://discord.gg/uR39NSjMzu" target="_blank" class="social-link discord" title="Discord">
+        <i class="fa-brands fa-discord"></i>
+      </a>
+      <a href="https://www.instagram.com/cfxdata_" target="_blank" class="social-link instagram" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://steamcommunity.com/profiles/76561199206890333/" target="_blank" class="social-link steam" title="Steam">
+        <i class="fa-brands fa-steam"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="bgMusic" loop>
+    <source src="musique.mp3" type="audio/mpeg">
+    Votre navigateur ne supporte pas l'audio.
+  </audio>
+
+<!-- Script pour la neige rouge/blanche -->
+<script>
+  (function() {
+    const container = document.getElementById('snow-container');
+    const colors = ['#ffffff', '#ff0000']; // Blanc et Rouge
+    
+    // Fonction pour créer une particule de neige
+    function createSnowflake() {
+      const flake = document.createElement('div');
+      flake.classList.add('flake');
+      
+      // Propriétés aléatoires
+      const size = Math.random() * 4 + 2; // Taille entre 2 et 6px
+      const left = Math.random() * 100; // Position horizontale aléatoire
+      const duration = Math.random() * 5 + 5; // Vitesse entre 5 et 10s
+      const color = Math.random() > 0.3 ? colors[0] : colors[1]; // 70% blanc, 30% rouge
+      
+      flake.style.position = 'absolute';
+      flake.style.width = size + 'px';
+      flake.style.height = size + 'px';
+      flake.style.background = color;
+      flake.style.borderRadius = '50%';
+      flake.style.left = left + 'vw';
+      flake.style.top = '-10px';
+      flake.style.opacity = Math.random() * 0.5 + 0.3;
+      flake.style.pointerEvents = 'none';
+      flake.style.animation = `fall ${duration}s linear infinite`;
+      
+      container.appendChild(flake);
+
+      // Supprimer la particule après animation pour ne pas surcharger
+      setTimeout(() => {
+        flake.remove();
+      }, duration * 1000);
+    }
+
+    // Ajouter le style d'animation dynamiquement
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fall {
+        0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Créer des flocons régulièrement
+    setInterval(createSnowflake, 100); // Un nouveau flocon toutes les 100ms
+  })();
+</script>
+
+<script>
+// Script Musique
+const musicBtn = document.getElementById('musicBtn');
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    musicBtn.textContent = "🎵 Musique: OFF";
+    musicBtn.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  } else {
+    bgMusic.play().then(() => {
+      musicBtn.textContent = "🔊 Musique: ON";
+      musicBtn.style.backgroundColor = "rgba(255, 0, 0, 0.6)";
+    }).catch(error => {
+      alert("Veuillez interagir avec la page pour activer l'audio.");
+    });
+    isPlaying = true;
+  }
+});
+</script>
+</body>
+</html>
